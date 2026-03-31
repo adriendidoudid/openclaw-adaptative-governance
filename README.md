@@ -35,64 +35,12 @@ When thresholds are crossed, it creates diagnostics and can propose bounded expe
 
 ### Installation
 
-1. **Install the plugin:**
-
-```bash
-npm i openclaw-adaptative-governance
-```
-
-2. **Register with OpenClaw:**
-
-If your OpenClaw version supports plugin auto-discovery, the plugin will be registered automatically from its manifest (`openclaw.plugin.json`). Otherwise, register it manually by adding to `openclaw.plugin.json` in your config directory:
-
-```json
-{
-  "id": "adaptative-governance",
-  "name": "Adaptative Governance",
-  "description": "Adaptive governance overlay for OpenClaw agents",
-  "version": "1.0.0",
-  "configSchema": {
-    "type": "object",
-    "additionalProperties": false,
-    "properties": {
-      "overlayMode": {
-        "type": "string",
-        "enum": ["light", "advanced", "experimental"],
-        "default": "light"
-      },
-      "autoObserve": {
-        "type": "boolean",
-        "default": true
-      }
-    }
-  }
-}
-```
-
-Or install it via the OpenClaw CLI (if available):
-
 ```bash
 openclaw plugins install openclaw-adaptative-governance
+openclaw gateway restart
 ```
 
-3. **Enable the plugin in your gateway config** (`~/.openclaw/openclaw.json`):
-
-```json
-{
-  "plugins": {
-    "extensions": {
-      "adaptative-governance": {
-        "enabled": true,
-        "overlayMode": "light"
-      }
-    }
-  }
-}
-```
-
-If your OpenClaw version auto-enables plugins listed in `openclaw.plugin.json`, this step may not be required.
-
-4. **Restart the OpenClaw gateway.**
+The plugin auto-registers, auto-onboards in `light` mode, and auto-discovers non-bundled plugins.
 
 > **Note:** If installing from source instead of npm, run `npm run build` after `npm install` to produce the `dist/` output.
 
@@ -163,6 +111,29 @@ The plugin exposes 9 governance tools the agent can call directly:
 | `governance_self_review` | Agent self-evaluation after a task |
 | `governance_ask_self_review` | Request agent self-evaluation |
 
+### Enabling Self-Review for an Agent
+
+To enable auto-critique without waiting for errors, tell your agent to call `governance_self_review` at the end of each significant task:
+
+> Use `governance_self_review` at the end of each task to self-evaluate — include a summary, any gaps you identified, and suggested improvements.
+
+If gaps are found, the plugin automatically creates an `optimization` diagnostic (visible via `/governance status`).
+
+### Disabling Governance for an Agent
+
+To stop governance for an agent without uninstalling the plugin:
+
+```
+/governance onboard <agent_id> off
+```
+
+To disable the plugin entirely, remove it from your config:
+
+```bash
+openclaw plugins uninstall adaptative-governance
+openclaw gateway restart
+```
+
 ### Overlay Modes and Thresholds
 
 Governance sensitivity is controlled by `overlayMode`:
@@ -207,26 +178,19 @@ openclaw-plugin-adaptative-agent/
 
 **Approval codes** — pending approvals use short codes (`GOV-1`, `GOV-2`…) so you can respond from any chat interface without quoting the full request.
 
-## Build Commands
-
-```bash
-npm run build   # Compile TypeScript → dist/
-npm run check   # Type-check without emitting
-npm run dev     # Watch mode (tsc --watch)
-```
-
 ## Where to Get Help
 
-- OpenClaw documentation: [docs/index.md](docs/index.md)
-- Hooks system: [docs/automation/hooks.md](docs/automation/hooks.md)
 - OpenClaw GitHub: https://github.com/openclaw/openclaw
 - Plugin SDK events (`message:preprocessed`, `tool_result_persist`, `message:received`) are documented in the hooks reference above.
 
 ## Who Maintains and Contributes
 
-This plugin is maintained as part of the OpenClaw ecosystem. For issues, feature requests, or contributions related to this plugin, open an issue in this repository.
+This plugin was created for the community and is open to anyone who may find it useful. It is currently maintained by me personally. I am still learning how to properly maintain a GitHub repository, so I appreciate your patience, feedback, and contributions.
 
-For general OpenClaw questions and support, see the [OpenClaw documentation](docs/index.md) or the [OpenClaw GitHub repository](https://github.com/openclaw/openclaw).
+If you encounter a bug, have a feature request, or would like to contribute, please open an issue in this repository.
+
+For general OpenClaw questions and support, see the OpenClaw documentation
+or the OpenClaw GitHub repository.
 
 ## License
 
