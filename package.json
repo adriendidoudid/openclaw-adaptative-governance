@@ -1,8 +1,12 @@
 {
   "name": "openclaw-adaptative-governance",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Adaptive governance overlay for OpenClaw agents — observes, diagnoses, experiments, and asks before changing",
   "type": "module",
+  "files": [
+    "dist/",
+    "openclaw.plugin.json"
+  ],
   "openclaw": {
     "extensions": [
       "./dist/index.js"
