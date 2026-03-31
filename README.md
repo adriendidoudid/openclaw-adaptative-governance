@@ -35,16 +35,15 @@ When thresholds are crossed, it creates diagnostics and can propose bounded expe
 
 ### Installation
 
-1. **Build the plugin:**
+1. **Install the plugin:**
 
 ```bash
-npm install
-npm run build
+npm i openclaw-adaptative-governance
 ```
 
 2. **Register with OpenClaw:**
 
-Add the plugin to your `openclaw.plugin.json`:
+If your OpenClaw version supports plugin auto-discovery, the plugin will be registered automatically from its manifest (`openclaw.plugin.json`). Otherwise, register it manually by adding to `openclaw.plugin.json` in your config directory:
 
 ```json
 {
@@ -70,10 +69,10 @@ Add the plugin to your `openclaw.plugin.json`:
 }
 ```
 
-Or install it via the OpenClaw CLI once plugin installation is available:
+Or install it via the OpenClaw CLI (if available):
 
 ```bash
-openclaw plugins install ./path/to/this/plugin
+openclaw plugins install openclaw-adaptative-governance
 ```
 
 3. **Enable the plugin in your gateway config** (`~/.openclaw/openclaw.json`):
@@ -91,7 +90,11 @@ openclaw plugins install ./path/to/this/plugin
 }
 ```
 
+If your OpenClaw version auto-enables plugins listed in `openclaw.plugin.json`, this step may not be required.
+
 4. **Restart the OpenClaw gateway.**
+
+> **Note:** If installing from source instead of npm, run `npm run build` after `npm install` to produce the `dist/` output.
 
 ### Onboarding
 
