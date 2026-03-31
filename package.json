@@ -1,0 +1,30 @@
+{
+  "name": "openclaw-adaptative-governance",
+  "version": "1.0.0",
+  "description": "Adaptive governance overlay for OpenClaw agents — observes, diagnoses, experiments, and asks before changing",
+  "type": "module",
+  "openclaw": {
+    "extensions": [
+      "./dist/index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.3.24-beta.2",
+      "minGatewayVersion": "2026.3.24-beta.2"
+    },
+    "build": {
+      "openclawVersion": "2026.3.24-beta.2",
+      "pluginSdkVersion": "2026.3.24-beta.2"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "check": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@sinclair/typebox": "^0.34.49",
+    "openclaw": "^2026.3.28",
+    "typescript": "^5.7.3"
+  }
+}

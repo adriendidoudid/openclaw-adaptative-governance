@@ -1,0 +1,33 @@
+{
+  "id": "adaptative-governance",
+  "name": "Adaptative Governance",
+  "description": "Adaptive governance overlay — observes agent behavior, detects improvement opportunities, runs bounded experiments, and asks for approval before structural changes",
+  "version": "1.0.0",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "overlayMode": {
+        "type": "string",
+        "enum": ["light", "advanced", "experimental"],
+        "default": "light",
+        "description": "Governance overlay mode on first startup"
+      },
+      "autoObserve": {
+        "type": "boolean",
+        "default": true,
+        "description": "Automatically observe agent messages and tool results"
+      },
+      "journalPath": {
+        "type": "string",
+        "description": "Path to the governance audit journal directory (relative to agent workspace or absolute)"
+      },
+      "agents": {
+        "type": "array",
+        "items": { "type": "string" },
+        "default": [],
+        "description": "List of agent IDs governed by this plugin. Empty array = all agents. Use /governance onboard to configure per-agent mode."
+      }
+    }
+  }
+}

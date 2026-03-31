@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r OpenClawPluginApi node_modules/openclaw/dist/plugin-sdk/ --include=*.d.ts)",
+      "Bash(grep -r \"export type OpenClawPluginApi\\\\|interface OpenClawPluginApi\" node_modules/openclaw/dist/plugin-sdk/ --include=*.d.ts)",
+      "Bash(npm run:*)",
+      "Bash(node -e \":*)"
+    ]
+  }
+}
