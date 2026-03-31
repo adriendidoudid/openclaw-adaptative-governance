@@ -1,6 +1,6 @@
 {
   "name": "openclaw-adaptative-governance",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Adaptive governance overlay for OpenClaw agents — observes, diagnoses, experiments, and asks before changing",
   "type": "module",
   "files": [
@@ -26,8 +26,10 @@
     "check": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.49"
+  },
   "devDependencies": {
-    "@sinclair/typebox": "^0.34.49",
     "openclaw": "^2026.3.28",
     "typescript": "^5.7.3"
   }
