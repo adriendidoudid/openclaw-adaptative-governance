@@ -5,7 +5,8 @@
   "type": "module",
   "files": [
     "dist/",
-    "openclaw.plugin.json"
+    "openclaw.plugin.json",
+    "README.md"
   ],
   "openclaw": {
     "extensions": [
